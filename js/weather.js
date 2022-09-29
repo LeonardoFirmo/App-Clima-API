@@ -1,5 +1,5 @@
 const APIKey = 'Z74ADnlq5zHJ7SldHBz7fxDJgLnkDysa'
-const cityUrl = city => `http://dataservice.accuweather.com/locations/v1/cities/search?apikey=${APIKey}&q=${city}`
+const cityUrl = city => `https://dataservice.accuweather.com/locations/v1/cities/search?apikey=${APIKey}&q=${city}`
 
 async function getLocation (city){
     const responseApi = await fetch(cityUrl(city))
@@ -16,7 +16,7 @@ async function getWeather (cityName){
     const [cityCode] = await getLocation(cityName)
     const [,city] = await getLocation(cityName)
 
-    const responseApi = await fetch(`http://dataservice.accuweather.com/currentconditions/v1/${cityCode}?apikey=${APIKey}&language=pt-br`)
+    const responseApi = await fetch(`https://dataservice.accuweather.com/currentconditions/v1/${cityCode}?apikey=${APIKey}&language=pt-br`)
     const clima = await responseApi.json()
     const isDay = clima[0]['IsDayTime']
     const temperatura = clima[0]['Temperature']['Metric'].Value
